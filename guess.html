@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 100);
+
+		function readInt(user){
+			var number = document.getElementById(user).value;
+			return parseInt(number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(id,text){
+			document.getElementById(id).innerHTML = text;
+		}
+
+		function hide(id){
+			document.getElementById(id).style.display = "none";
+		}
+		function show(id){
+			document.getElementById(id).style.display = "block";
+		}
+
+		function guess(user){
+			var id="";
+			if (user=="userAnswer1") {
+				id="info1";
+				hide("button1");
+				show("button2");
+			}else if (user=="userAnswer2") {
+				id="info2";
+				hide("button2");
+				show("button1");
+			}
+		var userAnswer = readInt(user);
+
+
+		if(userAnswer==-1){
+			if (user=="userAnswer1") {
+				write("info1","Игрок 1 сдался, Игрок 2 победил!");
+			}else if (user=="userAnswer2") {
+				write("info2","Игрок 2 сдался, Игрок 1 победил!");
+			}		
+		}
+		if (userAnswer==answer) {
+			if (user=="userAnswer1") {
+				write("info1","Игрок 1 угадал!");
+				hide("button1");
+				hide("button2");
+				hide("userAnswer1");
+				hide("userAnswer2");
+				hide("info2");
+			}else if (user=="userAnswer2") {
+				write("info2","Игрок 2 угадал!");
+				hide("button1");
+				hide("button2");
+				hide("userAnswer1");
+				hide("userAnswer2");
+				hide("info1");
+			}
+
+		}else if (userAnswer>answer) {
+			if (user=="userAnswer1") {
+				write("info1","Игрок 1 ввел слишком большое число");
+			}else if (user=="userAnswer2") {
+				write("info2","Игрок 2 ввел слишком большое число");
+			}
+		}
+		else if (userAnswer<answer) {
+			if (user=="userAnswer1") {
+				write("info1","Игрок 1 ввел слишком маленькое число");
+			}else if (user=="userAnswer2") {
+				write("info2","Игрок 2 ввел слишком маленькое число");
+			}
+		}
+
+		}
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="#">Угадайка</a>
+		<a href="parol.html">Генератор случайных поролей</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка на двоих</h1>
+
+			<div class="box">
+
+				<p id="info1">Игрок 1 введите число от 0 до 100</p>
+				<input type="text" id="userAnswer1">
+				<br>
+				<a href="#" onClick="guess('userAnswer1');" id="button1">Начать</a>
+				<br>	
+				<br>	
+				<br>
+				<p id="info2">Игрок 2 введите число от 0 до 100</p>
+				<input type="text" id="userAnswer2">
+				<br>
+				<a href="#" onClick="guess('userAnswer2');" id="button2">Начать</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; Ivan Petrov
+<div>
+
+
+</body>
+</html>
